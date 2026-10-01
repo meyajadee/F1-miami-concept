@@ -105,10 +105,47 @@ const carContainer =
 
 
 /* =========================================
-   CREATE CARS AND TRAILS
+   CREATE CAR GROUPS
 ========================================= */
 
 cars.forEach((car) => {
+
+    /*
+     * GROUP
+     *
+     * The car and trail live inside
+     * the exact same moving element.
+     */
+
+    const group =
+        document.createElement("div");
+
+    group.className =
+        "car-group";
+
+    group.style.top =
+        car.top;
+
+    group.style.animationDuration =
+        `${car.duration}s`;
+
+    group.style.animationDelay =
+        `${car.delay}s`;
+
+
+    /*
+     * TRAIL
+     */
+
+    const trail =
+        document.createElement("div");
+
+    trail.className =
+        "car-trail";
+
+    trail.style.color =
+        car.color;
+
 
     /*
      * CAR
@@ -128,60 +165,16 @@ cars.forEach((car) => {
     carImage.alt =
         `${car.name} Formula 1 car`;
 
-    carImage.style.top =
-        car.top;
-
-    carImage.style.animationDuration =
-        `${car.duration}s`;
-
-    carImage.style.animationDelay =
-        `${car.delay}s`;
-
 
     /*
-     * TRAIL
+     * Put both inside the same group.
      */
 
-    const trail =
-        document.createElement("div");
+    group.appendChild(trail);
 
-    trail.className =
-        "car-trail";
+    group.appendChild(carImage);
 
-    /*
-     * Keep the trail vertically centered
-     * with the rear/center of the car.
-     */
-
-    trail.style.top =
-        `calc(
-            ${car.top}
-            + clamp(
-                18px,
-                3.2vw,
-                52px
-            )
-        )`;
-
-    trail.style.color =
-        car.color;
-
-    trail.style.animationDuration =
-        `${car.duration}s`;
-
-    trail.style.animationDelay =
-        `${car.delay}s`;
-
-
-    /*
-     * Trail first, car second,
-     * so the car remains visually
-     * above the trail.
-     */
-
-    carContainer.appendChild(trail);
-
-    carContainer.appendChild(carImage);
+    carContainer.appendChild(group);
 });
 
 
