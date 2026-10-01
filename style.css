@@ -36,12 +36,8 @@ body {
         #050505;
 }
 
-
-/* Subtle horizontal racing lines */
-
 #intro::before {
     content: "";
-
     position: absolute;
     inset: 0;
 
@@ -55,18 +51,13 @@ body {
         );
 
     opacity: 0.45;
-
     pointer-events: none;
 }
-
-
-/* Subtle red accent line */
 
 #intro::after {
     content: "";
 
     position: absolute;
-
     left: 0;
     top: 50%;
 
@@ -83,22 +74,17 @@ body {
 
     opacity: 0;
 
-    animation:
-        ambientLine 1s ease forwards;
-
+    animation: ambientLine 1s ease forwards;
     animation-delay: 1s;
 
     pointer-events: none;
 }
 
-
 @keyframes ambientLine {
-
     to {
         opacity: 1;
     }
 }
-
 
 /* =========================================
    CAR CONTAINER
@@ -113,20 +99,14 @@ body {
     z-index: 5;
 }
 
-
 /* =========================================
-   F1 CARS
+   CARS
 ========================================= */
 
 .f1-car {
     position: absolute;
 
     left: -22vw;
-
-    /*
-       Slightly larger than before,
-       but still relatively small on screen.
-    */
 
     width: clamp(
         105px,
@@ -163,15 +143,13 @@ body {
         );
 }
 
-
 /* =========================================
-   CAR MOTION
+   CAR MOVEMENT
 ========================================= */
 
 @keyframes raceAcross {
 
     0% {
-
         left: -22vw;
 
         opacity: 0;
@@ -181,37 +159,27 @@ body {
             translateY(8px);
     }
 
-
     8% {
-
         opacity: 1;
     }
 
-
     18% {
-
         transform:
             scale(0.96)
             translateY(0);
     }
 
-
     60% {
-
         transform:
             scale(1)
             translateY(0);
     }
 
-
     82% {
-
         opacity: 1;
     }
 
-
     100% {
-
         left: 112vw;
 
         opacity: 0;
@@ -222,36 +190,25 @@ body {
     }
 }
 
-
 /* =========================================
-   TEAM TRAILS
+   TRAILS
 ========================================= */
 
 .car-trail {
-
     position: absolute;
 
     /*
-       Starts at the same horizontal point
-       as the car.
+       IMPORTANT:
+       The trail starts slightly behind
+       the car rather than at a completely
+       different position.
     */
 
-    left: -22vw;
-
-    /*
-       Thick enough to feel powerful,
-       but not so large that it becomes
-       a giant horizontal line.
-    */
-
-    height: 17px;
-
-    /*
-       Shorter trail so it stays visually
-       attached to the car.
-    */
+    left: -32vw;
 
     width: 18vw;
+
+    height: 17px;
 
     border-radius: 999px;
 
@@ -261,8 +218,8 @@ body {
         linear-gradient(
             90deg,
             transparent 0%,
-            currentColor 25%,
-            currentColor 72%,
+            currentColor 20%,
+            currentColor 70%,
             rgba(255, 255, 255, 0.95) 100%
         );
 
@@ -276,12 +233,11 @@ body {
         );
 
     /*
-       IMPORTANT:
-       Trail now uses the same timing as
-       the car.
+       Same smooth movement curve
+       as the car.
     */
 
-    animation-name: trailFollow;
+    animation-name: trailAcross;
 
     animation-timing-function:
         cubic-bezier(
@@ -297,10 +253,11 @@ body {
 }
 
 
-/* Atmospheric glow */
+/* =========================================
+   TRAIL GLOW
+========================================= */
 
 .car-trail::before {
-
     content: "";
 
     position: absolute;
@@ -325,10 +282,9 @@ body {
 }
 
 
-/* Bright central streak */
+/* Bright center */
 
 .car-trail::after {
-
     content: "";
 
     position: absolute;
@@ -357,74 +313,54 @@ body {
    TRAIL MOVEMENT
 ========================================= */
 
-@keyframes trailFollow {
+@keyframes trailAcross {
+
+    /*
+       Starts behind the car.
+    */
 
     0% {
-
-        left: -22vw;
-
+        left: -32vw;
         opacity: 0;
     }
 
-
     8% {
-
         opacity: 0.95;
     }
 
+    /*
+       The trail and car now travel
+       continuously with no stepping.
+    */
 
     18% {
-
-        left: -5vw;
-
-        opacity: 0.95;
+        left: -15vw;
     }
-
 
     35% {
-
-        left: 18vw;
-
-        opacity: 0.90;
+        left: 10vw;
     }
 
-
-    50% {
-
-        left: 39vw;
-
-        opacity: 0.82;
+    52% {
+        left: 35vw;
     }
 
-
-    65% {
-
+    69% {
         left: 60vw;
-
-        opacity: 0.68;
     }
 
-
-    78% {
-
-        left: 79vw;
-
-        opacity: 0.45;
+    82% {
+        left: 82vw;
+        opacity: 0.55;
     }
 
-
-    88% {
-
-        left: 94vw;
-
+    92% {
+        left: 99vw;
         opacity: 0.20;
     }
 
-
     100% {
-
-        left: 112vw;
-
+        left: 116vw;
         opacity: 0;
     }
 }
@@ -435,7 +371,6 @@ body {
 ========================================= */
 
 #intro-message {
-
     position: absolute;
 
     left: 50%;
@@ -468,26 +403,10 @@ body {
         )
         forwards;
 
-    /*
-       The final car begins around 4.15s
-       and lasts about 2.7s.
-
-       This puts the title shortly after
-       the final cars disappear.
-    */
-
     animation-delay: 7.1s;
 }
 
-
-/* Main title */
-
 #intro-message h1 {
-
-    /*
-       Smaller than before.
-    */
-
     font-size:
         clamp(
             30px,
@@ -507,11 +426,7 @@ body {
         scaleX(0.94);
 }
 
-
-/* Subtitle */
-
 #intro-message p {
-
     margin-top: 20px;
 
     font-size:
@@ -546,7 +461,6 @@ body {
 @keyframes revealMessage {
 
     0% {
-
         opacity: 0;
 
         transform:
@@ -556,17 +470,13 @@ body {
         filter: blur(8px);
     }
 
-
     55% {
-
         opacity: 0.75;
 
         filter: blur(1px);
     }
 
-
     100% {
-
         opacity: 1;
 
         transform:
@@ -583,7 +493,6 @@ body {
 ========================================= */
 
 #click-prompt {
-
     position: fixed;
 
     left: 50%;
@@ -613,21 +522,14 @@ body {
         ease
         forwards;
 
-    /*
-       Appears around the same time
-       as the title.
-    */
-
     animation-delay: 7.4s;
 
     pointer-events: none;
 }
 
-
 @keyframes revealPrompt {
 
     from {
-
         opacity: 0;
 
         transform:
@@ -635,9 +537,7 @@ body {
             translateY(8px);
     }
 
-
     to {
-
         opacity: 0.75;
 
         transform:
@@ -654,35 +554,25 @@ body {
 @media (max-width: 700px) {
 
     .f1-car {
-
         width: 21vw;
     }
 
-
     .car-trail {
-
-        height: 12px;
-
         width: 22vw;
+        height: 12px;
     }
 
-
     .car-trail::before {
-
         height: 28px;
     }
 
-
     #intro-message h1 {
-
         font-size: 10vw;
 
         letter-spacing: -0.035em;
     }
 
-
     #intro-message p {
-
         font-size: 8px;
 
         letter-spacing: 0.14em;
