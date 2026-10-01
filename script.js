@@ -4,8 +4,8 @@ const cars = [
         file: "MERCEDES.png",
         color: "#00D2BE",
         top: "17%",
-        delay: 0.2,
-        duration: 5.0
+        delay: 0.15,
+        duration: 3.0
     },
 
     {
@@ -13,8 +13,8 @@ const cars = [
         file: "FERRARI.png",
         color: "#E10600",
         top: "38%",
-        delay: 0.85,
-        duration: 4.7
+        delay: 0.55,
+        duration: 2.8
     },
 
     {
@@ -22,8 +22,8 @@ const cars = [
         file: "MCLAREN.png",
         color: "#FF8700",
         top: "26%",
-        delay: 1.45,
-        duration: 4.5
+        delay: 0.95,
+        duration: 2.7
     },
 
     {
@@ -31,8 +31,8 @@ const cars = [
         file: "REDBULL.png",
         color: "#3671C6",
         top: "56%",
-        delay: 2.05,
-        duration: 4.9
+        delay: 1.35,
+        duration: 2.9
     },
 
     {
@@ -40,8 +40,8 @@ const cars = [
         file: "WILLIAMS.png",
         color: "#64C4FF",
         top: "69%",
-        delay: 2.7,
-        duration: 4.6
+        delay: 1.75,
+        duration: 2.7
     },
 
     {
@@ -49,8 +49,8 @@ const cars = [
         file: "HAAS.png",
         color: "#B6BABD",
         top: "46%",
-        delay: 3.25,
-        duration: 4.5
+        delay: 2.15,
+        duration: 2.7
     },
 
     {
@@ -58,17 +58,17 @@ const cars = [
         file: "ALPINE.png",
         color: "#FF5FA2",
         top: "77%",
-        delay: 3.85,
-        duration: 4.8
+        delay: 2.55,
+        duration: 2.8
     },
 
     {
         name: "Racing Bulls",
-        file: "RACING BULS.png",
+        file: "RACING BULLS.png",
         color: "#6692FF",
         top: "31%",
-        delay: 4.4,
-        duration: 4.5
+        delay: 2.95,
+        duration: 2.7
     },
 
     {
@@ -76,8 +76,8 @@ const cars = [
         file: "CADILLAC.png",
         color: "#D7D7D7",
         top: "63%",
-        delay: 4.95,
-        duration: 4.7
+        delay: 3.35,
+        duration: 2.8
     },
 
     {
@@ -85,8 +85,8 @@ const cars = [
         file: "ASTON MARTIN.png",
         color: "#229971",
         top: "11%",
-        delay: 5.5,
-        duration: 4.6
+        delay: 3.75,
+        duration: 2.7
     },
 
     {
@@ -94,8 +94,8 @@ const cars = [
         file: "AUDI.png",
         color: "#F5F5F5",
         top: "51%",
-        delay: 6.05,
-        duration: 4.5
+        delay: 4.15,
+        duration: 2.7
     }
 ];
 
@@ -128,9 +128,6 @@ cars.forEach((car) => {
 
     /*
      * TRAIL
-     *
-     * Moved upward so it sits closer to the
-     * rear/center of the car instead of below it.
      */
 
     const trail = document.createElement("div");
@@ -143,11 +140,16 @@ cars.forEach((car) => {
     trail.style.color =
         car.color;
 
+    /*
+     * Trail uses the EXACT same timing
+     * as its car.
+     */
+
     trail.style.animationDuration =
         `${car.duration}s`;
 
     trail.style.animationDelay =
-        `${car.delay + 0.04}s`;
+        `${car.delay}s`;
 
 
     carContainer.appendChild(trail);
