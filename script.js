@@ -3,17 +3,17 @@ const cars = [
         name: "Mercedes",
         file: "MERCEDES.png",
         color: "#00D2BE",
-        top: "17%",
-        delay: 0.15,
-        duration: 3.0
+        top: "11%",
+        delay: 0.0,
+        duration: 2.8
     },
 
     {
         name: "Ferrari",
         file: "FERRARI.png",
         color: "#E10600",
-        top: "38%",
-        delay: 0.55,
+        top: "19%",
+        delay: 2.8,
         duration: 2.8
     },
 
@@ -21,44 +21,44 @@ const cars = [
         name: "McLaren",
         file: "MCLAREN.png",
         color: "#FF8700",
-        top: "26%",
-        delay: 0.95,
-        duration: 2.7
+        top: "27%",
+        delay: 5.6,
+        duration: 2.8
     },
 
     {
         name: "Red Bull",
         file: "REDBULL.png",
         color: "#3671C6",
-        top: "56%",
-        delay: 1.35,
-        duration: 2.9
+        top: "35%",
+        delay: 8.4,
+        duration: 2.8
     },
 
     {
         name: "Williams",
         file: "WILLIAMS.png",
         color: "#64C4FF",
-        top: "69%",
-        delay: 1.75,
-        duration: 2.7
+        top: "43%",
+        delay: 11.2,
+        duration: 2.8
     },
 
     {
         name: "Haas",
         file: "HAAS.png",
         color: "#B6BABD",
-        top: "46%",
-        delay: 2.15,
-        duration: 2.7
+        top: "51%",
+        delay: 14.0,
+        duration: 2.8
     },
 
     {
         name: "Alpine",
         file: "ALPINE.png",
         color: "#FF5FA2",
-        top: "77%",
-        delay: 2.55,
+        top: "59%",
+        delay: 16.8,
         duration: 2.8
     },
 
@@ -66,17 +66,17 @@ const cars = [
         name: "Racing Bulls",
         file: "RACING BULS.png",
         color: "#6692FF",
-        top: "31%",
-        delay: 2.95,
-        duration: 2.7
+        top: "67%",
+        delay: 19.6,
+        duration: 2.8
     },
 
     {
         name: "Cadillac",
         file: "CADILLAC.png",
         color: "#D7D7D7",
-        top: "63%",
-        delay: 3.35,
+        top: "75%",
+        delay: 22.4,
         duration: 2.8
     },
 
@@ -84,18 +84,18 @@ const cars = [
         name: "Aston Martin",
         file: "ASTON MARTIN.png",
         color: "#229971",
-        top: "11%",
-        delay: 3.75,
-        duration: 2.7
+        top: "83%",
+        delay: 25.2,
+        duration: 2.8
     },
 
     {
         name: "Audi",
         file: "AUDI.png",
         color: "#F5F5F5",
-        top: "51%",
-        delay: 4.15,
-        duration: 2.7
+        top: "91%",
+        delay: 28.0,
+        duration: 2.8
     }
 ];
 
@@ -105,7 +105,7 @@ const carContainer =
 
 
 /* =========================================
-   CREATE CAR GROUPS
+   CREATE EACH CAR
 ========================================= */
 
 cars.forEach((car) => {
@@ -113,8 +113,7 @@ cars.forEach((car) => {
     /*
      * GROUP
      *
-     * The car and trail live inside
-     * the exact same moving element.
+     * The group controls the car's movement.
      */
 
     const group =
@@ -135,6 +134,8 @@ cars.forEach((car) => {
 
     /*
      * TRAIL
+     *
+     * Solid rectangle.
      */
 
     const trail =
@@ -143,12 +144,26 @@ cars.forEach((car) => {
     trail.className =
         "car-trail";
 
-    trail.style.color =
+    trail.style.top =
+        car.top;
+
+    trail.style.background =
         car.color;
+
+    trail.style.animationDuration =
+        `${car.duration}s`;
+
+    /*
+       The trail begins at the same moment
+       as its car.
+    */
+
+    trail.style.animationDelay =
+        `${car.delay}s`;
 
 
     /*
-     * CAR
+     * CAR IMAGE
      */
 
     const carImage =
@@ -167,7 +182,7 @@ cars.forEach((car) => {
 
 
     /*
-     * Put both inside the same group.
+     * Put the trail behind the car.
      */
 
     group.appendChild(trail);
