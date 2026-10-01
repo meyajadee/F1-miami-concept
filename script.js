@@ -129,9 +129,8 @@ cars.forEach((car) => {
     /*
      * TRAIL
      *
-     * The trail is intentionally positioned
-     * around the vertical center of the car,
-     * rather than near a single wheel.
+     * Moved upward so it sits closer to the
+     * rear/center of the car instead of below it.
      */
 
     const trail = document.createElement("div");
@@ -139,7 +138,7 @@ cars.forEach((car) => {
     trail.className = "car-trail";
 
     trail.style.top =
-        `calc(${car.top} + clamp(30px, 5vw, 75px))`;
+        `calc(${car.top} + clamp(18px, 3.2vw, 52px))`;
 
     trail.style.color =
         car.color;
@@ -151,10 +150,6 @@ cars.forEach((car) => {
         `${car.delay + 0.04}s`;
 
 
-    /*
-     * Add both elements
-     */
-
     carContainer.appendChild(trail);
 
     carContainer.appendChild(carImage);
@@ -163,14 +158,8 @@ cars.forEach((car) => {
 
 /*
 =========================================
-   CLICK → STAGE 2 PREPARATION
+   CLICK → STAGE 2
 =========================================
-
-We are not building Stage 2 yet.
-
-For now, clicking anywhere simply creates
-a clean transition effect. Later we'll use
-this to reveal the Miami circuit interface.
 */
 
 document.getElementById("intro").addEventListener(
