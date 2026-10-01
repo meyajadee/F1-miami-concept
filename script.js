@@ -64,21 +64,10 @@ const cars = [
 
     {
         name: "Racing Bulls",
-
-        /*
-         * IMPORTANT:
-         * Your actual GitHub filename is
-         * RACING BULS.png
-         */
-
         file: "RACING BULS.png",
-
         color: "#6692FF",
-
         top: "31%",
-
         delay: 2.95,
-
         duration: 2.7
     },
 
@@ -116,14 +105,13 @@ const carContainer =
 
 
 /* =========================================
-   CREATE CARS + TRAILS
+   CREATE CARS AND TRAILS
 ========================================= */
 
 cars.forEach((car) => {
 
-
     /*
-     * CAR IMAGE
+     * CAR
      */
 
     const carImage =
@@ -160,10 +148,9 @@ cars.forEach((car) => {
     trail.className =
         "car-trail";
 
-
     /*
      * Keep the trail vertically centered
-     * around the rear/center of the car.
+     * with the rear/center of the car.
      */
 
     trail.style.top =
@@ -176,14 +163,8 @@ cars.forEach((car) => {
             )
         )`;
 
-
     trail.style.color =
         car.color;
-
-
-    /*
-     * EXACT SAME timing as the car.
-     */
 
     trail.style.animationDuration =
         `${car.duration}s`;
@@ -193,8 +174,9 @@ cars.forEach((car) => {
 
 
     /*
-     * Add trail first so the car
-     * visually sits above it.
+     * Trail first, car second,
+     * so the car remains visually
+     * above the trail.
      */
 
     carContainer.appendChild(trail);
