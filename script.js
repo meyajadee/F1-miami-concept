@@ -64,10 +64,21 @@ const cars = [
 
     {
         name: "Racing Bulls",
-        file: "RACING BULLS.png",
+
+        /*
+         * IMPORTANT:
+         * Your actual GitHub filename is
+         * RACING BULS.png
+         */
+
+        file: "RACING BULS.png",
+
         color: "#6692FF",
+
         top: "31%",
+
         delay: 2.95,
+
         duration: 2.7
     },
 
@@ -99,25 +110,38 @@ const cars = [
     }
 ];
 
-const carContainer = document.getElementById("cars");
+
+const carContainer =
+    document.getElementById("cars");
+
+
+/* =========================================
+   CREATE CARS + TRAILS
+========================================= */
 
 cars.forEach((car) => {
 
+
     /*
-     * CAR
+     * CAR IMAGE
      */
 
-    const carImage = document.createElement("img");
+    const carImage =
+        document.createElement("img");
 
-    carImage.className = "f1-car";
+    carImage.className =
+        "f1-car";
 
     carImage.src =
-        `assets/cars/${encodeURIComponent(car.file)}`;
+        `assets/cars/${encodeURIComponent(
+            car.file
+        )}`;
 
     carImage.alt =
         `${car.name} Formula 1 car`;
 
-    carImage.style.top = car.top;
+    carImage.style.top =
+        car.top;
 
     carImage.style.animationDuration =
         `${car.duration}s`;
@@ -130,19 +154,35 @@ cars.forEach((car) => {
      * TRAIL
      */
 
-    const trail = document.createElement("div");
+    const trail =
+        document.createElement("div");
 
-    trail.className = "car-trail";
+    trail.className =
+        "car-trail";
+
+
+    /*
+     * Keep the trail vertically centered
+     * around the rear/center of the car.
+     */
 
     trail.style.top =
-        `calc(${car.top} + clamp(18px, 3.2vw, 52px))`;
+        `calc(
+            ${car.top}
+            + clamp(
+                18px,
+                3.2vw,
+                52px
+            )
+        )`;
+
 
     trail.style.color =
         car.color;
 
+
     /*
-     * Trail uses the EXACT same timing
-     * as its car.
+     * EXACT SAME timing as the car.
      */
 
     trail.style.animationDuration =
@@ -152,26 +192,34 @@ cars.forEach((car) => {
         `${car.delay}s`;
 
 
+    /*
+     * Add trail first so the car
+     * visually sits above it.
+     */
+
     carContainer.appendChild(trail);
 
     carContainer.appendChild(carImage);
 });
 
 
-/*
-=========================================
+/* =========================================
    CLICK → STAGE 2
-=========================================
-*/
+========================================= */
 
-document.getElementById("intro").addEventListener(
-    "click",
-    () => {
+document
+    .getElementById("intro")
+    .addEventListener(
+        "click",
+        () => {
 
-        document.getElementById("intro").style.transition =
-            "opacity 1.2s ease";
+            const intro =
+                document.getElementById("intro");
 
-        document.getElementById("intro").style.opacity = "0";
+            intro.style.transition =
+                "opacity 1.2s ease";
 
-    }
-);
+            intro.style.opacity =
+                "0";
+        }
+    );
