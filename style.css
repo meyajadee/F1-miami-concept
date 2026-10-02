@@ -50,7 +50,7 @@ body {
     left: 0;
 
     width: 0;
-    height: clamp(65px, 8.5vh, 105px);
+    height: 9.09vh;
 
     display: flex;
     align-items: center;
