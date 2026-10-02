@@ -291,13 +291,29 @@ if (intro) {
 
                 intro.style.visibility =
                     "hidden";
-
+            
                 raceExperience.style.visibility =
                     "visible";
-
+            
                 raceExperience.style.opacity =
                     "1";
-
+            
+                const circuitPanel =
+                    document.querySelector(".circuit-panel");
+            
+                if (circuitPanel) {
+            
+                    circuitPanel.classList.remove(
+                        "circuit-enter"
+                    );
+            
+                    void circuitPanel.offsetWidth;
+            
+                    circuitPanel.classList.add(
+                        "circuit-enter"
+                    );
+                }
+            
             }, 600);
 
         }
