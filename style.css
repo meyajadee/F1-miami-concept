@@ -1032,7 +1032,7 @@ body {
 #track-path {
     fill: none;
 
-    stroke: #008E97;
+    stroke: #6BB0B6;
     stroke-width: 8;
 
     stroke-linecap: round;
@@ -1041,9 +1041,9 @@ body {
     opacity: 0.95;
 
     filter:
-        drop-shadow(0 0 4px #008E97)
-        drop-shadow(0 0 12px #008E97)
-        drop-shadow(0 0 24px rgba(100, 21, 42, 2));
+        drop-shadow(0 0 4px #6BB0B6)
+        drop-shadow(0 0 12px #6BB0B6)
+        drop-shadow(0 0 24px rgba(26, 2, 0, 20));
 }
 
 
