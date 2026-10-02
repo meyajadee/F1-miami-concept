@@ -1,6 +1,7 @@
-/* ================================
-   F1 MIAMI CONCEPT — INTRO
-   ================================ */
+/* =========================================================
+   F1 MIAMI CONCEPT
+   INTRO / HERO STYLES
+   ========================================================= */
 
 * {
     box-sizing: border-box;
@@ -17,13 +18,13 @@ body {
 }
 
 body {
-    position: relative;
-    color: white;
+    color: #fff;
 }
 
-/* ================================
-   INTRO SCREEN
-   ================================ */
+
+/* =========================================================
+   INTRO
+   ========================================================= */
 
 #intro {
     position: fixed;
@@ -34,15 +35,21 @@ body {
     overflow: hidden;
 }
 
-/* ================================
+
+/* =========================================================
    RACING LANES
-   ================================ */
+   ========================================================= */
 
 .race-lane {
     position: absolute;
-    left: -28vw;
 
-    width: 128vw;
+    /*
+       The group begins off-screen and travels
+       across the entire viewport.
+    */
+    left: -30vw;
+
+    width: 130vw;
     height: clamp(65px, 8.5vh, 105px);
 
     display: flex;
@@ -50,135 +57,143 @@ body {
 
     opacity: 0;
 
-    /*
-       IMPORTANT:
-       The entire group moves together.
-       The trail can therefore NEVER get ahead
-       of the car.
-    */
+    z-index: 5;
+
     animation-name: raceAcross;
-    animation-duration: 2.75s;
-    animation-timing-function: cubic-bezier(0.2, 0.75, 0.25, 1);
+    animation-duration: 2750ms;
+    animation-timing-function: cubic-bezier(0.18, 0.72, 0.22, 1);
     animation-fill-mode: forwards;
-    animation-iteration-count: 1;
 }
 
-/* ================================
-   SOLID TRAIL
-   ================================ */
+
+/* =========================================================
+   TRAIL
+
+   The trail is attached to the car's rear.
+
+   IMPORTANT:
+   The trail extends LEFT from the car.
+   The car is therefore always the leading edge.
+   ========================================================= */
 
 .car-trail {
     position: absolute;
 
     /*
-       The trail begins at the car's rear
-       and extends all the way across the lane.
+       The trail starts immediately behind the car.
     */
-    left: 0;
+    left: -100vw;
     top: 50%;
 
-    width: 100%;
+    width: 100vw;
     height: 100%;
 
     transform: translateY(-50%);
 
-    /*
-       SOLID COLOR.
-       No glow. No gradient.
-    */
     background: var(--team-color);
 
+    z-index: 1;
+
+    opacity: 0.97;
+
     /*
-       Very slight softness only where the
-       trail meets the car.
+       Only a tiny amount of softness.
+       This keeps the rectangle solid while
+       blending the trail into the car.
     */
-    filter: blur(0.7px);
-
-    opacity: 0.96;
+    filter: blur(0.8px);
 
     /*
-       The left edge is softened separately
-       using a mask so the trail blends into
-       the rear of the car.
+       Soft connection near the car.
+
+       The trail is solid after the first few
+       percent of its width.
     */
     -webkit-mask-image: linear-gradient(
         to right,
         transparent 0%,
-        rgba(0, 0, 0, 0.18) 1%,
-        rgba(0, 0, 0, 0.72) 3%,
-        black 6%,
+        rgba(0, 0, 0, 0.25) 2%,
+        rgba(0, 0, 0, 0.75) 4%,
+        black 7%,
         black 100%
     );
 
     mask-image: linear-gradient(
         to right,
         transparent 0%,
-        rgba(0, 0, 0, 0.18) 1%,
-        rgba(0, 0, 0, 0.72) 3%,
-        black 6%,
+        rgba(0, 0, 0, 0.25) 2%,
+        rgba(0, 0, 0, 0.75) 4%,
+        black 7%,
         black 100%
     );
 
     /*
-       Subtle horizontal motion blur.
-       This keeps the rectangle looking like
-       it is moving extremely quickly.
+       Subtle speed treatment.
     */
-    animation: trailMotion 2.75s linear forwards;
+    animation: trailMotion 2750ms linear forwards;
 }
 
-/* ================================
+
+/* =========================================================
    CAR
-   ================================ */
+   ========================================================= */
 
 .f1-car {
     position: absolute;
 
     /*
-       Car sits at the FRONT of the moving group.
-       The trail is behind it.
+       The car is at the RIGHT edge of the
+       moving group.
+
+       Trail extends to its LEFT.
     */
-    left: 0;
+    left: 100vw;
     top: 50%;
 
     width: clamp(105px, 11.5vw, 205px);
     height: auto;
 
-    transform: translateY(-50%);
+    transform:
+        translate(-100%, -50%);
 
-    z-index: 5;
+    z-index: 3;
 
     object-fit: contain;
 
     /*
-       Keeps the actual car relatively crisp.
+       Very subtle motion blur.
     */
     filter:
-        blur(0.15px)
-        drop-shadow(0 0 0.5px rgba(255, 255, 255, 0.35));
+        blur(0.2px)
+        drop-shadow(
+            0 0 0.7px
+            rgba(255, 255, 255, 0.25)
+        );
 
-    /*
-       Tiny horizontal stretch gives a sense
-       of speed without destroying the car.
-    */
-    animation: carSpeed 2.75s linear forwards;
+    animation:
+        carMotion 2750ms linear forwards;
 }
 
-/* ================================
-   CAR MOTION
-   ================================ */
 
-@keyframes carSpeed {
+/* =========================================================
+   CAR MOTION
+   ========================================================= */
+
+@keyframes carMotion {
 
     0% {
         opacity: 0;
+
         transform:
-            translateY(-50%)
-            translateX(-3px)
+            translate(-100%, -50%)
             scaleX(1);
+        
         filter:
-            blur(0.2px)
-            drop-shadow(0 0 0.5px rgba(255, 255, 255, 0.2));
+            blur(0.25px)
+            drop-shadow(
+                0 0 0.5px
+                rgba(255, 255, 255, 0.2)
+            );
     }
 
     5% {
@@ -187,118 +202,135 @@ body {
 
     25% {
         transform:
-            translateY(-50%)
-            translateX(0)
+            translate(-100%, -50%)
             scaleX(1.018);
+
         filter:
-            blur(0.45px)
-            drop-shadow(0 0 0.8px rgba(255, 255, 255, 0.25));
+            blur(0.5px)
+            drop-shadow(
+                0 0 0.8px
+                rgba(255, 255, 255, 0.25)
+            );
     }
 
     55% {
         transform:
-            translateY(-50%)
-            translateX(0)
+            translate(-100%, -50%)
             scaleX(1.025);
+
         filter:
-            blur(0.55px)
-            drop-shadow(0 0 0.8px rgba(255, 255, 255, 0.2));
+            blur(0.6px)
+            drop-shadow(
+                0 0 0.8px
+                rgba(255, 255, 255, 0.2)
+            );
     }
 
-    80% {
+    78% {
         transform:
-            translateY(-50%)
-            translateX(0)
-            scaleX(1.01);
+            translate(-100%, -50%)
+            scaleX(1.015);
+
         filter:
-            blur(0.35px)
-            drop-shadow(0 0 0.6px rgba(255, 255, 255, 0.2));
+            blur(0.45px)
+            drop-shadow(
+                0 0 0.7px
+                rgba(255, 255, 255, 0.2)
+            );
+    }
+
+    92% {
+        transform:
+            translate(-100%, -50%)
+            scaleX(1);
+
+        filter:
+            blur(0.25px)
+            drop-shadow(
+                0 0 0.5px
+                rgba(255, 255, 255, 0.15)
+            );
     }
 
     100% {
         opacity: 0;
 
         transform:
-            translateY(-50%)
-            translateX(0)
+            translate(-100%, -50%)
             scaleX(1);
 
         filter:
             blur(0.2px)
-            drop-shadow(0 0 0.5px rgba(255, 255, 255, 0.15));
+            drop-shadow(
+                0 0 0.5px
+                rgba(255, 255, 255, 0.1)
+            );
     }
 }
 
-/* ================================
+
+/* =========================================================
    TRAIL MOTION
-   ================================ */
+   ========================================================= */
 
 @keyframes trailMotion {
 
     0% {
         opacity: 0;
 
-        /*
-           Starts directly behind the car.
-        */
-        transform:
-            translateY(-50%)
-            translateX(-8px);
-
-        filter: blur(1.4px);
+        filter: blur(1.6px);
     }
 
-    6% {
-        opacity: 0.96;
+    5% {
+        opacity: 0.92;
     }
 
-    30% {
+    15% {
+        opacity: 0.97;
+
+        filter: blur(1.25px);
+    }
+
+    35% {
         opacity: 0.98;
 
-        transform:
-            translateY(-50%)
-            translateX(0);
-
-        filter: blur(1.1px);
+        filter: blur(1px);
     }
 
     60% {
         opacity: 0.98;
 
-        filter: blur(0.9px);
+        filter: blur(0.85px);
     }
 
     82% {
-        opacity: 0.96;
+        opacity: 0.97;
 
-        filter: blur(0.8px);
+        filter: blur(0.75px);
     }
 
     94% {
         opacity: 0.96;
 
-        filter: blur(0.7px);
+        filter: blur(0.8px);
     }
 
     100% {
         opacity: 0;
 
-        transform:
-            translateY(-50%)
-            translateX(0);
-
         filter: blur(1px);
     }
 }
 
-/* ================================
-   MAIN RACING MOVEMENT
-   ================================ */
+
+/* =========================================================
+   MAIN GROUP MOVEMENT
+   ========================================================= */
 
 @keyframes raceAcross {
 
     0% {
-        left: -28vw;
+        left: -30vw;
         opacity: 0;
     }
 
@@ -307,117 +339,28 @@ body {
     }
 
     /*
-       Most of the movement happens quickly.
+       Car travels quickly across the screen.
     */
-    82% {
-        left: 100vw;
+    84% {
+        left: 0;
         opacity: 1;
     }
 
-    /*
-       Briefly remains visible at the edge
-       before fading out.
-    */
-    91% {
-        left: 112vw;
+    94% {
+        left: 8vw;
         opacity: 1;
     }
 
     100% {
-        left: 125vw;
+        left: 14vw;
         opacity: 0;
     }
 }
 
-/* ================================
-   MIAMI MESSAGE
-   ================================ */
 
-#intro-message {
-    position: absolute;
-
-    left: 50%;
-    top: 50%;
-
-    transform: translate(-50%, -50%);
-
-    width: 90%;
-
-    text-align: center;
-
-    font-size: clamp(32px, 5vw, 72px);
-    font-weight: 800;
-    letter-spacing: 0.08em;
-
-    color: #fff;
-
-    opacity: 0;
-
-    pointer-events: none;
-
-    z-index: 20;
-
-    animation:
-        messageAppear 0.8s ease-out 3.5s forwards;
-}
-
-@keyframes messageAppear {
-
-    0% {
-        opacity: 0;
-        transform:
-            translate(-50%, -50%)
-            scale(0.97);
-    }
-
-    100% {
-        opacity: 1;
-        transform:
-            translate(-50%, -50%)
-            scale(1);
-    }
-}
-
-/* ================================
-   CLICK PROMPT
-   ================================ */
-
-#click-prompt {
-    position: absolute;
-
-    left: 50%;
-    bottom: 7%;
-
-    transform: translateX(-50%);
-
-    font-size: 12px;
-    letter-spacing: 0.22em;
-    text-transform: uppercase;
-
-    color: rgba(255, 255, 255, 0.65);
-
-    opacity: 0;
-
-    z-index: 20;
-
-    animation:
-        promptAppear 0.7s ease-out 4.15s forwards;
-}
-
-@keyframes promptAppear {
-
-    from {
-        opacity: 0;
-    }
-
-    to {
-        opacity: 1;
-    }
-}
-
-/* ================================
-   FINAL BLACK FADE
-   ================================ */
+/* =========================================================
+   FINAL BLACK TRANSITION
+   ========================================================= */
 
 #intro::after {
     content: "";
@@ -427,17 +370,18 @@ body {
 
     background: #000;
 
-    pointer-events: none;
-
     opacity: 0;
+
+    pointer-events: none;
 
     z-index: 15;
 
     animation:
-        finalFade 0.45s ease-in 3.05s forwards;
+        finalBlack 0.45s ease-in
+        3.02s forwards;
 }
 
-@keyframes finalFade {
+@keyframes finalBlack {
 
     0% {
         opacity: 0;
@@ -448,17 +392,285 @@ body {
     }
 }
 
-/*
-   Message needs to appear ABOVE the fade.
-*/
-#intro-message,
-#click-prompt {
+
+/* =========================================================
+   MIAMI TITLE SCREEN
+   ========================================================= */
+
+#intro-message {
+    position: absolute;
+
+    left: 8vw;
+    top: 50%;
+
+    transform:
+        translateY(-50%)
+        translateX(-20px);
+
+    width: min(760px, 78vw);
+
     z-index: 30;
+
+    opacity: 0;
+
+    pointer-events: none;
+
+    animation:
+        titleReveal 0.8s
+        cubic-bezier(0.16, 1, 0.3, 1)
+        3.5s forwards;
 }
 
-/* ================================
-   MOBILE
-   ================================ */
+
+/* Small eyebrow */
+
+#intro-message .eyebrow {
+    display: flex;
+
+    align-items: center;
+    gap: 12px;
+
+    margin-bottom: 22px;
+
+    font-size: 11px;
+    font-weight: 700;
+
+    letter-spacing: 0.22em;
+
+    text-transform: uppercase;
+
+    color: rgba(255, 255, 255, 0.68);
+}
+
+
+/*
+   Small red indicator.
+*/
+
+#intro-message .eyebrow::before {
+    content: "";
+
+    width: 28px;
+    height: 2px;
+
+    background: #e10600;
+}
+
+
+/* Main title */
+
+#intro-message .main-title {
+    margin: 0;
+
+    font-size: clamp(42px, 6vw, 82px);
+
+    font-weight: 800;
+
+    line-height: 0.92;
+
+    letter-spacing: -0.045em;
+
+    text-transform: uppercase;
+
+    color: #fff;
+}
+
+
+/*
+   Secondary information.
+*/
+
+#intro-message .subtitle {
+    margin-top: 25px;
+
+    display: flex;
+
+    align-items: center;
+    gap: 18px;
+
+    font-size: 12px;
+    font-weight: 600;
+
+    letter-spacing: 0.16em;
+
+    text-transform: uppercase;
+
+    color: rgba(255, 255, 255, 0.58);
+}
+
+
+/*
+   Vertical divider.
+*/
+
+#intro-message .subtitle span {
+    display: inline-block;
+
+    width: 1px;
+    height: 13px;
+
+    background: rgba(255, 255, 255, 0.3);
+}
+
+
+/* =========================================================
+   CONCEPT LABEL
+   ========================================================= */
+
+#concept-label {
+    position: absolute;
+
+    left: 8vw;
+    bottom: 7vh;
+
+    z-index: 30;
+
+    opacity: 0;
+
+    animation:
+        conceptReveal 0.6s
+        ease-out
+        3.75s forwards;
+}
+
+
+/*
+   Clean editorial metadata.
+
+   No giant box.
+   No floating badge.
+*/
+
+#concept-label .concept-line {
+    display: flex;
+
+    align-items: center;
+    gap: 10px;
+
+    font-size: 9px;
+    font-weight: 700;
+
+    letter-spacing: 0.2em;
+
+    text-transform: uppercase;
+
+    color: rgba(255, 255, 255, 0.48);
+}
+
+
+/*
+   Small indicator.
+*/
+
+#concept-label .concept-dot {
+    width: 5px;
+    height: 5px;
+
+    background: #e10600;
+
+    border-radius: 50%;
+}
+
+
+/* =========================================================
+   PAGE INDICATOR
+   ========================================================= */
+
+#sequence-indicator {
+    position: absolute;
+
+    right: 7vw;
+    bottom: 7vh;
+
+    z-index: 30;
+
+    opacity: 0;
+
+    animation:
+        conceptReveal 0.6s
+        ease-out
+        3.9s forwards;
+
+    font-size: 9px;
+    font-weight: 700;
+
+    letter-spacing: 0.18em;
+
+    color: rgba(255, 255, 255, 0.38);
+}
+
+
+/* =========================================================
+   TITLE REVEAL
+   ========================================================= */
+
+@keyframes titleReveal {
+
+    0% {
+        opacity: 0;
+
+        transform:
+            translateY(-50%)
+            translateX(-25px);
+    }
+
+    100% {
+        opacity: 1;
+
+        transform:
+            translateY(-50%)
+            translateX(0);
+    }
+}
+
+
+@keyframes conceptReveal {
+
+    0% {
+        opacity: 0;
+        transform: translateY(8px);
+    }
+
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+
+/* =========================================================
+   CLICK PROMPT
+   ========================================================= */
+
+#click-prompt {
+    position: absolute;
+
+    right: 7vw;
+    top: 7vh;
+
+    z-index: 30;
+
+    opacity: 0;
+
+    font-size: 9px;
+    font-weight: 700;
+
+    letter-spacing: 0.18em;
+
+    text-transform: uppercase;
+
+    color: rgba(255, 255, 255, 0.42);
+
+    animation:
+        conceptReveal 0.6s
+        ease-out
+        4s forwards;
+}
+
+
+/* =========================================================
+   RESPONSIVE
+   ========================================================= */
 
 @media (max-width: 700px) {
 
@@ -471,7 +683,21 @@ body {
     }
 
     #intro-message {
-        font-size: clamp(28px, 8vw, 48px);
-        letter-spacing: 0.06em;
+        left: 7vw;
+        width: 84vw;
+    }
+
+    #intro-message .main-title {
+        font-size: clamp(38px, 9vw, 58px);
+    }
+
+    #concept-label {
+        left: 7vw;
+        bottom: 6vh;
+    }
+
+    #sequence-indicator {
+        right: 7vw;
+        bottom: 6vh;
     }
 }
