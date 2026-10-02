@@ -988,7 +988,7 @@ body {
     min-height: 0;
 
     display: flex;
-    align-items: flexx-start;
+    align-items: flex-start;
     justify-content: center;
 
     padding: 10px 20px 20px;
@@ -1063,8 +1063,9 @@ body {
         flex-direction: column;
         gap: 6px;
     }
-
-      /* =========================================================
+    
+}
+    /* =========================================================
        DRIVER TEAM HOVER COLORS
        ========================================================= */
     
@@ -1139,5 +1140,3 @@ body {
     .driver-row[data-team="cadillac"]:hover {
         background-color: rgba(190, 190, 190, 0.18);
     }
-    
-}
