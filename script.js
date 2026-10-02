@@ -344,3 +344,71 @@ if (trackPath) {
     );
 
 }
+/* =========================================================
+   CIRCUIT TRACK ANIMATION
+   ========================================================= */
+
+const trackPath =
+    document.getElementById("track-path");
+
+const raceExperience =
+    document.getElementById("race-experience");
+
+
+if (trackPath && raceExperience) {
+
+    const pathLength =
+        trackPath.getTotalLength();
+
+
+    /*
+       Start with the entire circuit hidden.
+    */
+
+    trackPath.style.strokeDasharray =
+        pathLength;
+
+    trackPath.style.strokeDashoffset =
+        pathLength;
+
+
+    /*
+       Animate the circuit after Stage 2 appears.
+    */
+
+    const startCircuitAnimation = () => {
+
+        trackPath.animate(
+            [
+                {
+                    strokeDashoffset:
+                        pathLength
+                },
+
+                {
+                    strokeDashoffset:
+                        0
+                }
+            ],
+
+            {
+                duration: 5000,
+                iterations: Infinity,
+                easing: "linear"
+            }
+        );
+
+    };
+
+
+    /*
+       Small delay so Stage 2 has time
+       to appear before the circuit starts.
+    */
+
+    setTimeout(
+        startCircuitAnimation,
+        650
+    );
+
+}
