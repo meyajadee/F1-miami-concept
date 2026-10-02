@@ -248,7 +248,7 @@ if (intro) {
 
 
 /* =========================================================
-   CLICK TO CONTINUE
+   CLICK TO CONTINUE TO STAGE 2
    ========================================================= */
 
 if (intro) {
@@ -257,14 +257,48 @@ if (intro) {
         "click",
         () => {
 
+            const raceExperience =
+                document.getElementById("race-experience");
+
+
             /*
-               Stage 2 will eventually be
-               connected here.
+               Make sure Stage 2 exists
+               before continuing.
             */
 
-            console.log(
-                "Continue to Stage 2"
-            );
+            if (!raceExperience) {
+                return;
+            }
+
+
+            /*
+               Fade Stage 1 out.
+            */
+
+            intro.style.transition =
+                "opacity 0.6s ease";
+
+            intro.style.opacity = "0";
+
+
+            /*
+               Once the fade finishes,
+               hide Stage 1 completely
+               and reveal Stage 2.
+            */
+
+            setTimeout(() => {
+
+                intro.style.visibility =
+                    "hidden";
+
+                raceExperience.style.visibility =
+                    "visible";
+
+                raceExperience.style.opacity =
+                    "1";
+
+            }, 600);
 
         }
     );
