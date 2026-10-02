@@ -304,3 +304,43 @@ if (intro) {
     );
 
 }
+
+/* =========================================================
+   CIRCUIT TRACK ANIMATION
+   ========================================================= */
+
+const trackPath = document.getElementById("track-path");
+
+if (trackPath) {
+
+    const pathLength = trackPath.getTotalLength();
+
+    trackPath.style.strokeDasharray = pathLength;
+    trackPath.style.strokeDashoffset = pathLength;
+
+    trackPath.style.setProperty(
+        "--track-length",
+        pathLength
+    );
+
+    /*
+       Animate the glowing line around the circuit.
+    */
+
+    trackPath.animate(
+        [
+            {
+                strokeDashoffset: pathLength
+            },
+            {
+                strokeDashoffset: 0
+            }
+        ],
+        {
+            duration: 5000,
+            iterations: Infinity,
+            easing: "linear"
+        }
+    );
+
+}
