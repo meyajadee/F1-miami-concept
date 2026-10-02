@@ -1,215 +1,221 @@
+/* ================================
+   F1 MIAMI CONCEPT — INTRO SCRIPT
+   ================================ */
+
 const cars = [
     {
-        name: "Mercedes",
-        file: "MERCEDES.png",
-        color: "#00D2BE",
-        top: "11%",
-        delay: 0.0,
-        duration: 2.8
+        team: "Mercedes",
+        image: "assets/cars/MERCEDES.png",
+        color: "#00D2BE"
     },
-
     {
-        name: "Ferrari",
-        file: "FERRARI.png",
-        color: "#E10600",
-        top: "19%",
-        delay: 2.8,
-        duration: 2.8
+        team: "Ferrari",
+        image: "assets/cars/FERRARI.png",
+        color: "#E80000"
     },
-
     {
-        name: "McLaren",
-        file: "MCLAREN.png",
-        color: "#FF8700",
-        top: "27%",
-        delay: 5.6,
-        duration: 2.8
+        team: "McLaren",
+        image: "assets/cars/MCLAREN.png",
+        color: "#FF8700"
     },
-
     {
-        name: "Red Bull",
-        file: "REDBULL.png",
-        color: "#3671C6",
-        top: "35%",
-        delay: 8.4,
-        duration: 2.8
+        team: "Red Bull Racing",
+        image: "assets/cars/REDBULL.png",
+        color: "#3671C6"
     },
-
     {
-        name: "Williams",
-        file: "WILLIAMS.png",
-        color: "#64C4FF",
-        top: "43%",
-        delay: 11.2,
-        duration: 2.8
+        team: "Williams",
+        image: "assets/cars/WILLIAMS.png",
+        color: "#005AFF"
     },
-
     {
-        name: "Haas",
-        file: "HAAS.png",
-        color: "#B6BABD",
-        top: "51%",
-        delay: 14.0,
-        duration: 2.8
+        team: "Haas",
+        image: "assets/cars/HAAS.png",
+        color: "#B6BABD"
     },
-
     {
-        name: "Alpine",
-        file: "ALPINE.png",
-        color: "#FF5FA2",
-        top: "59%",
-        delay: 16.8,
-        duration: 2.8
+        team: "Alpine",
+        image: "assets/cars/ALPINE.png",
+        color: "#2293D1"
     },
-
     {
-        name: "Racing Bulls",
-        file: "RACING BULS.png",
-        color: "#6692FF",
-        top: "67%",
-        delay: 19.6,
-        duration: 2.8
+        team: "Racing Bulls",
+        image: "assets/cars/RACING BULS.png",
+        color: "#6692FF"
     },
-
     {
-        name: "Cadillac",
-        file: "CADILLAC.png",
-        color: "#D7D7D7",
-        top: "75%",
-        delay: 22.4,
-        duration: 2.8
+        team: "Cadillac",
+        image: "assets/cars/CADILLAC.png",
+        color: "#FFFFFF"
     },
-
     {
-        name: "Aston Martin",
-        file: "ASTON MARTIN.png",
-        color: "#229971",
-        top: "83%",
-        delay: 25.2,
-        duration: 2.8
+        team: "Aston Martin",
+        image: "assets/cars/ASTON MARTIN.png",
+        color: "#006F62"
     },
-
     {
-        name: "Audi",
-        file: "AUDI.png",
-        color: "#F5F5F5",
-        top: "91%",
-        delay: 28.0,
-        duration: 2.8
+        team: "Audi",
+        image: "assets/cars/AUDI.png",
+        color: "#D0D0D0"
     }
 ];
 
 
-const carContainer =
-    document.getElementById("cars");
+/* ================================
+   TIMING
+   ================================ */
+
+/*
+   Every car gets the same travel duration.
+
+   The starts are staggered only slightly,
+   so the entire sequence feels like one
+   rapid wave instead of 11 separate events.
+*/
+
+const CAR_DURATION = 2750;
+
+/*
+   Last car begins roughly 0.7 seconds
+   after the first car.
+
+   10 intervals × 70ms = 700ms.
+*/
+const START_STAGGER = 70;
 
 
-/* =========================================
-   CREATE EACH CAR
-========================================= */
+/* ================================
+   LANE POSITIONS
+   ================================ */
 
-cars.forEach((car) => {
-
-    /*
-     * GROUP
-     *
-     * The group controls the car's movement.
-     */
-
-    const group =
-        document.createElement("div");
-
-    group.className =
-        "car-group";
-
-    group.style.top =
-        car.top;
-
-    group.style.animationDuration =
-        `${car.duration}s`;
-
-    group.style.animationDelay =
-        `${car.delay}s`;
+const lanePositions = [
+    11,
+    19,
+    27,
+    35,
+    43,
+    51,
+    59,
+    67,
+    75,
+    83,
+    91
+];
 
 
-    /*
-     * TRAIL
-     *
-     * Solid rectangle.
-     */
+/* ================================
+   CREATE THE RACE
+   ================================ */
 
-    const trail =
-        document.createElement("div");
+const intro = document.getElementById("intro");
 
-    trail.className =
-        "car-trail";
+if (intro) {
 
-    trail.style.top =
-        car.top;
+    cars.forEach((car, index) => {
 
-    trail.style.background =
-        car.color;
+        /* ----------------------------
+           Create moving group
+           ---------------------------- */
 
-    trail.style.animationDuration =
-        `${car.duration}s`;
+        const lane = document.createElement("div");
 
-    /*
-       The trail begins at the same moment
-       as its car.
-    */
+        lane.className = "race-lane";
 
-    trail.style.animationDelay =
-        `${car.delay}s`;
+        lane.style.top = `${lanePositions[index]}%`;
 
+        lane.style.setProperty(
+            "--team-color",
+            car.color
+        );
 
-    /*
-     * CAR IMAGE
-     */
-
-    const carImage =
-        document.createElement("img");
-
-    carImage.className =
-        "f1-car";
-
-    carImage.src =
-        `assets/cars/${encodeURIComponent(
-            car.file
-        )}`;
-
-    carImage.alt =
-        `${car.name} Formula 1 car`;
+        /*
+           Every car has the same movement
+           duration.
+        */
+        lane.style.animationDuration =
+            `${CAR_DURATION}ms`;
 
 
-    /*
-     * Put the trail behind the car.
-     */
-
-    group.appendChild(trail);
-
-    group.appendChild(carImage);
-
-    carContainer.appendChild(group);
-});
+        /*
+           Slightly stagger each launch.
+        */
+        lane.style.animationDelay =
+            `${index * START_STAGGER}ms`;
 
 
-/* =========================================
-   CLICK → STAGE 2
-========================================= */
+        /* ----------------------------
+           Create trail
+           ---------------------------- */
 
-document
-    .getElementById("intro")
-    .addEventListener(
-        "click",
-        () => {
+        const trail = document.createElement("div");
 
-            const intro =
-                document.getElementById("intro");
+        trail.className = "car-trail";
 
-            intro.style.transition =
-                "opacity 1.2s ease";
+        trail.style.setProperty(
+            "--team-color",
+            car.color
+        );
 
-            intro.style.opacity =
-                "0";
-        }
-    );
+        trail.style.animationDuration =
+            `${CAR_DURATION}ms`;
+
+        trail.style.animationDelay =
+            `${index * START_STAGGER}ms`;
+
+
+        /* ----------------------------
+           Create car
+           ---------------------------- */
+
+        const image = document.createElement("img");
+
+        image.className = "f1-car";
+
+        image.src = car.image;
+
+        image.alt = `${car.team} Formula 1 car`;
+
+        image.draggable = false;
+
+
+        /* ----------------------------
+           IMPORTANT ORDER
+           ---------------------------- */
+
+        /*
+           Trail goes FIRST in the DOM,
+           car goes SECOND.
+
+           Because both live inside the
+           SAME moving group, the trail
+           physically travels with the car.
+        */
+
+        lane.appendChild(trail);
+
+        lane.appendChild(image);
+
+        intro.appendChild(lane);
+    });
+}
+
+
+/* ================================
+   CLICK TO CONTINUE
+   ================================ */
+
+const clickPrompt =
+    document.getElementById("click-prompt");
+
+if (intro && clickPrompt) {
+
+    intro.addEventListener("click", () => {
+
+        /*
+           You can connect this later to
+           Stage 2 / the circuit experience.
+        */
+
+        console.log("Intro clicked — continue to Stage 2.");
+    });
+}
