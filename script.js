@@ -598,23 +598,11 @@ if (intro) {
                 raceExperience.style.opacity =
                     "1";
             
-                const circuitPanel =
-                    document.querySelector(".circuit-panel");
             
-                if (circuitPanel) {
-            
-                    circuitPanel.classList.remove(
-                        "circuit-enter"
-                    );
-            
-                    void circuitPanel.offsetWidth;
-            
-                    circuitPanel.classList.add(
-                        "circuit-enter"
                     );
                 }
             
-            }, 600);
+            , 600);
 
         }
     );
