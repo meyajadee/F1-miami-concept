@@ -822,7 +822,6 @@ body {
 }
 
 .driver-row:hover {
-    background: rgba(255, 255, 255, 0.035);
 
     padding-left: 8px;
 }
@@ -1058,105 +1057,80 @@ body {
         gap: 6px;
     }
 
-        /* =========================================================
+      /* =========================================================
        DRIVER TEAM HOVER COLORS
        ========================================================= */
     
     .driver-row {
-        position: relative;
-        overflow: hidden;
-    }
-    
-    .driver-row::before {
-        content: "";
-    
-        position: absolute;
-        inset: 0;
-    
-        opacity: 0;
-    
         transition:
-            opacity 0.25s ease,
-            background 0.25s ease;
-    
-        pointer-events: none;
-    }
-    
-    .driver-row > * {
-        position: relative;
-        z-index: 1;
+            background-color 0.25s ease,
+            padding-left 0.2s ease;
     }
     
     
     /* RED BULL RACING */
-    .driver-row[data-team="redbull"]::before {
-        background: rgba(30, 70, 180, 0.22);
+    .driver-row[data-team="redbull"]:hover {
+        background-color: rgba(30, 70, 180, 0.22);
     }
     
     
     /* MCLAREN */
-    .driver-row[data-team="mclaren"]::before {
-        background: rgba(255, 128, 0, 0.20);
+    .driver-row[data-team="mclaren"]:hover {
+        background-color: rgba(255, 128, 0, 0.25);
     }
     
     
     /* FERRARI */
-    .driver-row[data-team="ferrari"]::before {
-        background: rgba(220, 0, 0, 0.20);
+    .driver-row[data-team="ferrari"]:hover {
+        background-color: rgba(220, 0, 0, 0.22);
     }
     
     
     /* MERCEDES */
-    .driver-row[data-team="mercedes"]::before {
-        background: rgba(0, 210, 190, 0.20);
+    .driver-row[data-team="mercedes"]:hover {
+        background-color: rgba(0, 210, 190, 0.22);
     }
     
     
     /* WILLIAMS */
-    .driver-row[data-team="williams"]::before {
-        background: rgba(30, 100, 210, 0.20);
+    .driver-row[data-team="williams"]:hover {
+        background-color: rgba(30, 100, 210, 0.22);
     }
     
     
     /* ASTON MARTIN */
-    .driver-row[data-team="aston"]::before {
-        background: rgba(0, 120, 90, 0.22);
+    .driver-row[data-team="aston"]:hover {
+        background-color: rgba(0, 120, 90, 0.24);
     }
     
     
     /* HAAS */
-    .driver-row[data-team="haas"]::before {
-        background: rgba(220, 220, 220, 0.14);
+    .driver-row[data-team="haas"]:hover {
+        background-color: rgba(220, 220, 220, 0.14);
     }
     
     
     /* ALPINE */
-    .driver-row[data-team="alpine"]::before {
-        background: rgba(0, 120, 220, 0.20);
+    .driver-row[data-team="alpine"]:hover {
+        background-color: rgba(0, 120, 220, 0.22);
     }
     
     
     /* RACING BULLS */
-    .driver-row[data-team="racingbulls"]::before {
-        background: rgba(70, 100, 220, 0.20);
+    .driver-row[data-team="racingbulls"]:hover {
+        background-color: rgba(70, 100, 220, 0.22);
     }
     
     
     /* AUDI */
-    .driver-row[data-team="audi"]::before {
-        background: rgba(190, 190, 190, 0.16);
+    .driver-row[data-team="audi"]:hover {
+        background-color: rgba(190, 190, 190, 0.16);
     }
     
     
     /* CADILLAC */
-    .driver-row[data-team="cadillac"]::before {
-        background: rgba(190, 190, 190, 0.18);
-    }
-    
-    
-    /* HOVER */
-    .driver-row:hover::before {
-        opacity: 1;
+    .driver-row[data-team="cadillac"]:hover {
+        background-color: rgba(190, 190, 190, 0.18);
     }
     
 }
