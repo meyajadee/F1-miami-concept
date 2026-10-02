@@ -1,6 +1,12 @@
-/* ================================
-   F1 MIAMI CONCEPT — INTRO SCRIPT
-   ================================ */
+/* =========================================================
+   F1 MIAMI CONCEPT
+   INTRO SCRIPT
+   ========================================================= */
+
+
+/* =========================================================
+   CAR DATA
+   ========================================================= */
 
 const cars = [
     {
@@ -61,32 +67,37 @@ const cars = [
 ];
 
 
-/* ================================
+/* =========================================================
    TIMING
-   ================================ */
+   ========================================================= */
 
 /*
-   Every car gets the same travel duration.
+   Each car travels for 2.75 seconds.
 
-   The starts are staggered only slightly,
-   so the entire sequence feels like one
-   rapid wave instead of 11 separate events.
+   Cars launch 70ms apart.
+
+   10 gaps × 70ms = 700ms.
+
+   Therefore:
+
+   First car:
+   0.00s → 2.75s
+
+   Last car:
+   0.70s → 3.45s
+
+   Entire sequence:
+   approximately 3.5 seconds.
 */
 
 const CAR_DURATION = 2750;
 
-/*
-   Last car begins roughly 0.7 seconds
-   after the first car.
-
-   10 intervals × 70ms = 700ms.
-*/
 const START_STAGGER = 70;
 
 
-/* ================================
-   LANE POSITIONS
-   ================================ */
+/* =========================================================
+   VERTICAL POSITIONS
+   ========================================================= */
 
 const lanePositions = [
     11,
@@ -103,9 +114,9 @@ const lanePositions = [
 ];
 
 
-/* ================================
-   CREATE THE RACE
-   ================================ */
+/* =========================================================
+   BUILD INTRO
+   ========================================================= */
 
 const intro = document.getElementById("intro");
 
@@ -113,39 +124,32 @@ if (intro) {
 
     cars.forEach((car, index) => {
 
-        /* ----------------------------
-           Create moving group
-           ---------------------------- */
+        /* -----------------------------------------------
+           MOVING GROUP
+           ----------------------------------------------- */
 
         const lane = document.createElement("div");
 
         lane.className = "race-lane";
 
-        lane.style.top = `${lanePositions[index]}%`;
+        lane.style.top =
+            `${lanePositions[index]}%`;
 
         lane.style.setProperty(
             "--team-color",
             car.color
         );
 
-        /*
-           Every car has the same movement
-           duration.
-        */
         lane.style.animationDuration =
             `${CAR_DURATION}ms`;
 
-
-        /*
-           Slightly stagger each launch.
-        */
         lane.style.animationDelay =
             `${index * START_STAGGER}ms`;
 
 
-        /* ----------------------------
-           Create trail
-           ---------------------------- */
+        /* -----------------------------------------------
+           TRAIL
+           ----------------------------------------------- */
 
         const trail = document.createElement("div");
 
@@ -163,9 +167,9 @@ if (intro) {
             `${index * START_STAGGER}ms`;
 
 
-        /* ----------------------------
-           Create car
-           ---------------------------- */
+        /* -----------------------------------------------
+           CAR
+           ----------------------------------------------- */
 
         const image = document.createElement("img");
 
@@ -173,22 +177,18 @@ if (intro) {
 
         image.src = car.image;
 
-        image.alt = `${car.team} Formula 1 car`;
+        image.alt =
+            `${car.team} Formula 1 car`;
 
         image.draggable = false;
 
 
-        /* ----------------------------
-           IMPORTANT ORDER
-           ---------------------------- */
+        /* -----------------------------------------------
+           LAYER ORDER
+           ----------------------------------------------- */
 
         /*
-           Trail goes FIRST in the DOM,
-           car goes SECOND.
-
-           Because both live inside the
-           SAME moving group, the trail
-           physically travels with the car.
+           Trail is behind the car.
         */
 
         lane.appendChild(trail);
@@ -200,22 +200,26 @@ if (intro) {
 }
 
 
-/* ================================
-   CLICK TO CONTINUE
-   ================================ */
+/* =========================================================
+   CLICK PROMPT
+   ========================================================= */
 
 const clickPrompt =
     document.getElementById("click-prompt");
 
 if (intro && clickPrompt) {
 
-    intro.addEventListener("click", () => {
+    intro.addEventListener(
+        "click",
+        () => {
 
-        /*
-           You can connect this later to
-           Stage 2 / the circuit experience.
-        */
+            /*
+               Stage 2 will be connected here later.
+            */
 
-        console.log("Intro clicked — continue to Stage 2.");
-    });
+            console.log(
+                "Intro clicked — continue to Stage 2."
+            );
+        }
+    );
 }
