@@ -1140,3 +1140,33 @@ body {
     .driver-row[data-team="cadillac"]:hover {
         background-color: rgba(190, 190, 190, 0.18);
     }
+
+
+/* =========================================================
+   CIRCUIT ENTRANCE ANIMATION
+   ========================================================= */
+
+.circuit-panel {
+    opacity: 0;
+    transform: scale(0.94);
+    transform-origin: center center;
+
+    animation:
+        circuitEntrance 1.2s
+        cubic-bezier(0.16, 1, 0.3, 1)
+        0.7s
+        forwards;
+}
+
+@keyframes circuitEntrance {
+
+    0% {
+        opacity: 0;
+        transform: scale(0.94);
+    }
+
+    100% {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
