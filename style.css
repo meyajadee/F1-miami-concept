@@ -979,66 +979,71 @@ body {
 
 
 /* =========================================================
-   CIRCUIT TRACK ANIMATION
+   CIRCUIT VISUAL
    ========================================================= */
 
-const trackPath =
-    document.getElementById("track-path");
+.circuit-visual {
+    flex: 1;
+    min-height: 0;
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    padding: 10px 20px 20px;
+}
 
-const raceExperience =
-    document.getElementById("race-experience");
+.circuit-wrap {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    max-width: 720px;
+    max-height: 580px;
+}
 
+.circuit-image {
+    position: absolute;
+    inset: 0;
 
-if (trackPath && raceExperience) {
+    width: 100%;
+    height: 100%;
 
-    const pathLength =
-        trackPath.getTotalLength();
+    object-fit: contain;
 
-    trackPath.style.strokeDasharray =
-        pathLength;
-
-    trackPath.style.strokeDashoffset =
-        pathLength;
-
-
-    /*
-       Start the circuit animation
-       when Stage 2 becomes visible.
-    */
-
-    const startCircuitAnimation = () => {
-
-        trackPath.animate(
-            [
-                {
-                    strokeDashoffset:
-                        pathLength
-                },
-                {
-                    strokeDashoffset: 0
-                }
-            ],
-            {
-                duration: 5000,
-
-                iterations: Infinity,
-
-                easing: "linear"
-            }
-        );
-
-    };
+    filter:
+        brightness(0.9)
+        contrast(1.05);
+}
 
 
-    /*
-       Start after Stage 2 is revealed.
-    */
+/* =========================================================
+   ANIMATED CIRCUIT GLOW
+   ========================================================= */
 
-    setTimeout(
-        startCircuitAnimation,
-        650
-    );
+.circuit-glow {
+    position: absolute;
+    inset: 0;
 
+    width: 100%;
+    height: 100%;
+
+    pointer-events: none;
+    overflow: visible;
+}
+
+#track-path {
+    fill: none;
+
+    stroke: #e10600;
+    stroke-width: 8;
+
+    stroke-linecap: round;
+    stroke-linejoin: round;
+
+    opacity: 0.95;
+
+    filter:
+        drop-shadow(0 0 4px #e10600)
+        drop-shadow(0 0 12px #e10600)
+        drop-shadow(0 0 24px rgba(225, 6, 0, 0.7));
 }
 
 
