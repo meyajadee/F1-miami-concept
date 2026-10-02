@@ -1141,31 +1141,5 @@ body {
         background-color: rgba(190, 190, 190, 0.18);
     }
 
-        transform: scale(1);
-    }
+     
 
-
-/* =========================================================
-   CIRCUIT ENTRANCE
-   ========================================================= */
-
-.circuit-enter {
-    animation:
-        circuitEntrance
-        1.2s
-        cubic-bezier(0.16, 1, 0.3, 1)
-        forwards;
-}
-
-@keyframes circuitEntrance {
-
-    0% {
-        opacity: 0;
-        transform: scale(0.94);
-    }
-
-    100% {
-        opacity: 1;
-        transform: scale(1);
-    }
-}
