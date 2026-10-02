@@ -789,16 +789,24 @@ body {
 .leaderboard-rows {
     flex: 1 1 0;
     min-height: 0;
-    max-height: calc(100vh - 300px);
-
+   
     display: flex;
     flex-direction: column;
 
     overflow-y: auto;
     overflow-x: hidden;
 
+    max-height: calc(100vh - 300px);
+
     scrollbar-width: thin;
     scrollbar-color: rgba(255, 255, 255, 0.25) transparent;
+
+    .leaderboard-rows .driver-row {
+    flex: 0 0 45px;
+    height: 45px;
+    min-height: 45px;
+}
+    
 }
 
 .driver-row {
