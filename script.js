@@ -298,8 +298,6 @@ if (intro) {
                 raceExperience.style.opacity =
                     "1";
                
-               const cars = [
-
     {
         team: "Mercedes",
         image: "assets/cars/MERCEDES.png",
@@ -598,9 +596,7 @@ if (intro) {
                 raceExperience.style.opacity =
                     "1";
         
-                }
-            
-            , 600);
+                }, 600);
 
         }
     );
