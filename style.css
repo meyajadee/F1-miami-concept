@@ -791,6 +791,14 @@ body {
 
     display: flex;
     flex-direction: column;
+
+    overflow-y: auto;
+    overflow-x: hidden;
+
+    min-height: 0;
+
+    scrollbar-width: thin;
+    scrollbar-color: rgba(255, 255, 255, 0.2) transparent;
 }
 
 .driver-row {
@@ -905,7 +913,7 @@ body {
 
     height: 100%;
 
-    padding: 38px 42px 30px;
+    padding: 20px 42px 30px;
 
     display: flex;
     flex-direction: column;
@@ -920,7 +928,7 @@ body {
 .circuit-eyebrow {
     display: block;
 
-    margin-bottom: 10px;
+    margin-bottom: 6px;
 
     font-size: 9px;
     font-weight: 700;
