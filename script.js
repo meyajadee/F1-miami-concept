@@ -297,7 +297,12 @@ if (intro) {
             
                 raceExperience.style.opacity =
                     "1";
-            
+                const circuitImage =
+        document.querySelector(".circuit-image");
+    
+    if (circuitImage) {
+        circuitImage.classList.add("circuit-image-enter");
+    }
                const cars = [
 
     {
