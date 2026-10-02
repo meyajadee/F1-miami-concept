@@ -597,9 +597,7 @@ if (intro) {
             
                 raceExperience.style.opacity =
                     "1";
-            
-            
-                    );
+        
                 }
             
             , 600);
