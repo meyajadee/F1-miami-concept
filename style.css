@@ -787,15 +787,15 @@ body {
 }
 
 .leaderboard-rows {
-    height:100%;
-    
+    flex: 1 1 0;
+    min-height: 0;
+    max-height: calc(100vh - 300px);
+
     display: flex;
     flex-direction: column;
 
-    overflow-y: scroll;
+    overflow-y: auto;
     overflow-x: hidden;
-
-    min-height: 0;
 
     scrollbar-width: thin;
     scrollbar-color: rgba(255, 255, 255, 0.25) transparent;
